@@ -1,0 +1,49 @@
+<form [formGroup]="userForm" (ngSubmit)="adduser()">
+
+  <mat-card>
+    <mat-form-field appearance="fill">
+      <mat-label>Pseudo*</mat-label>
+      <input matInput type="text" formControlName="pseudo" placeholder="Pseudo">
+      <mat-error *ngIf="userForm.controls['pseudo'].hasError('required')">
+        <strong>
+          the pseudo is required
+        </strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Name*</mat-label>
+      <input matInput type="text" formControlName="name" placeholder="Name">
+      <mat-error *ngIf="userForm.controls['name'].hasError('required')">
+        <strong>
+          the user Name is required
+        </strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Age</mat-label>
+      <input matInput type="text" formControlName="age" placeholder="Age">
+      <mat-error *ngIf="userForm.controls['age'].hasError('min') || userForm.controls['age'].hasError('max')">
+        <strong>
+          the user Age must be between 18 and 90
+        </strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="text" formControlName="email" placeholder="Email">
+      <mat-error *ngIf="userForm.controls['email'].hasError('exist')">
+        <strong>
+          the email is already exist
+        </strong>
+      </mat-error>
+    </mat-form-field>
+  </mat-card>
+
+  <mat-card-actions>
+    <br>
+    <button type="submit" mat-raised-button color="primary">Add</button><br><br>
+    <button (click)="setAgeSyncValidator()" mat-raised-button color="primary">set Age Sync Validator</button><br><br>
+    <button (click)="removeAgeSyncValidator()" mat-raised-button color="primary">remove Age Sync Validator</button>
+  </mat-card-actions>
+
+</form>
